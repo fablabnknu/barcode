@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教師年會</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" id="homeLink">2024教師年會</a>
+        <a href="#" id="backToTop">回到最上面</a>
+    </div>
+
+    <div class="container">
+        <!-- 側邊導航欄 -->
+        <div class="side-links" id="sideLinks">
+            <div class="toggle-btn" id="toggleBtn">隱藏老師列表</div>
+            <h3>快速定位</h3>
+            <div id="sideLinksList"></div>
+        </div>
+
+        <!-- 內容區域 -->
+        <div class="content">
+            <div class="button-row">
+                <div class="btn" id="groupATab">甲組、黑客松</div>
+                <div class="btn" id="groupBTab">乙組</div>
+                <div class="btn" id="groupCTab">觀摩</div>
+            </div>
+            <h2 id="groupTitle">教師名單</h2>
+            <table id="teacherTable">
+                <thead>
+                    <tr>
+                        <th>恆星位置</th>
+                        <th>學校</th>
+                        <th>教師姓名</th>
+                        <th>A1觀摩</th>
+                        <th>A2競賽</th>
+                        <th>B黑客松</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 教師數據將被插入這裡 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JsBarcode Library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

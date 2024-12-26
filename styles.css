@@ -1,0 +1,252 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 頂部導航欄樣式 */
+.navbar {
+    width: 100%;
+    background-color: #f4a261;
+    padding: 10px 30px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 回到最上面按鈕樣式 */
+.navbar a#backToTop {
+    background-color: #ffffff81; 
+    color: white; /* 文字顏色 */
+    padding: 10px;
+    border-radius: 10px; /* 圓角邊框 */
+    font-weight: bold; /* 字體加粗 */
+    text-decoration:wavy; /* 去掉下劃線 */
+}
+
+.navbar a#backToTop:hover {
+    background-color: #a57b5881; 
+}
+
+.container {
+    margin-top: 60px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+/* 側邊欄樣式 */
+.side-links {
+    width: 100%;
+    background-color: #264653;
+    padding: 15px 40px;
+    color: white;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.side-links h3 {
+    margin-top: 0;
+}
+
+.side-links a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* 懸停顯示的顏色變化 */
+.side-links a:hover {
+    
+    background-color: #63828e; /* 懸停時變成橙色 */
+    color: #264653; /* 懸停時文字變色為深藍色 */
+    border-radius: 5px; /* 圓角邊框 */
+}
+
+/* 隱藏側邊欄的樣式 */
+.side-links.collapsed {
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.side-links.collapsed h3 {
+    display: none;
+}
+
+.side-links.collapsed #sideLinksList {
+    display: none;
+}
+
+.side-links.collapsed .quick-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.quick-buttons {
+    display: none;
+}
+
+.toggle-btn {
+    cursor: pointer;
+    background-color: #63828e;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+    border-radius: 5px; /* Rounded corners */
+}
+.toggle-btn:hover {
+    
+    background-color: #415760;
+    
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* 隱藏內容的樣式 */
+.content.fade-out {
+    opacity: 0.8; 
+    transition: opacity 0.3s ease-out;
+}
+
+
+/* 顯示內容的樣式 */
+.content.fade-in {
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0.70;
+    transition: opacity 0.3s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+/* 內容區域的初始樣式 */
+.content, #groupTitle {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #264653;
+    color: white;
+    margin-right: 10px;
+    font-size: 16px;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.tab.active {
+    background-color: #f4a261;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f4a261;
+    color: white;
+}
+
+td {
+    text-align: center;
+}
+
+/* Buttons in the same row */
+.button-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.button-row .btn {
+    padding: 10px 20px;
+    background-color: #f4a36181;
+    color: #ffffff;
+    border:none;
+    /*border: 2px solid #f4a261; /* Add border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold; /* Make font bold */
+}
+
+.button-row .btn:hover {
+    background-color: #a57b5881;
+}
+
+/* 當前選中的教師行樣式 */
+.highlighted {
+    font-weight: bold;       /* 字體加粗 */
+    
+    background-color: #63828e29; /* 背景色改變 */
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* 當螢幕寬度小於768px時，使側邊欄始終填滿手機螢幕寬度 */
+@media (max-width: 768px) {
+    .side-links {
+        width: 100%; /* 填滿整個螢幕寬度 */
+        padding: 15px 10px; /* 調整內邊距以適應手機畫面 */
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .side-links {
+        width: 200px; /* 桌面版的側邊欄固定寬度 */
+        height: calc(100vh - 60px); /* 側邊欄高度填滿整個螢幕 */
+        position: sticky;
+        top: 60px;
+        overflow-y: auto;
+    }
+
+    .side-links.collapsed {
+        width: 100px;
+    }
+}

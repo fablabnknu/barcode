@@ -72,56 +72,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 將資料填充到表格中
     function populateTable(data, group) {
-        const tbody = document.querySelector("#teacherTable tbody");
-        data.forEach((teacher, index) => {
-            const a1Barcode = teacher["A1觀摩編號"] ? teacher["A1觀摩編號"].toString() : "null";
-            const a2Barcode = teacher["A2競賽編號"] ? teacher["A2競賽編號"].toString() : "null";
-            const bHackathonBarcode = teacher["B黑客松編號"] ? teacher["B黑客松編號"].toString() : "null";
+    const tbody = document.querySelector("#teacherTable tbody");
+    data.forEach((teacher, index) => {
+        const a1Barcode = teacher["A1觀摩編號"] ? teacher["A1觀摩編號"].toString() : "null";
+        const a2Barcode = teacher["A2競賽編號"] ? teacher["A2競賽編號"].toString() : "null";
+        const bHackathonBarcode = teacher["B黑客松編號"] ? teacher["B黑客松編號"].toString() : "null";
 
-            const row = document.createElement("tr");
-            row.id = `teacher${group}_${index}`;
-            row.innerHTML = `
-                <td>${teacher["恆星位置"]}</td>
-                <td>${teacher["學校"] || defaultSchool}</td>
-                <td>${teacher["教師姓名"]}</td>
-                <td><svg id="barcodeA1_${group}_${index}" class="barcode"></svg></td>
-                <td><svg id="barcodeA2_${group}_${index}" class="barcode"></svg></td>
-                <td><svg id="barcodeBH_${group}_${index}" class="barcode"></svg></td>
-            `;
-            tbody.appendChild(row);
+        const row = document.createElement("tr");
+        row.id = `teacher${group}_${index}`;
 
-            // 檢查條碼是否存在，若不存在則隱藏該欄位
-            if (a1Barcode === "null") {
-                document.getElementById(`barcodeA1_${group}_${index}`).style.display = 'none';
-            } else {
-                JsBarcode(`#barcodeA1_${group}_${index}`, a1Barcode, {
-                    format: "CODE128",
-                    width: 2,
-                    height: 30
-                });
-            }
+        // Check if 備註 is null, if so, keep the cell blank
+        const remarkCell = teacher["備註"] !== null ? `<td>${teacher["備註"]}</td>` : `<td></td>`;
 
-            if (a2Barcode === "null") {
-                document.getElementById(`barcodeA2_${group}_${index}`).style.display = 'none';
-            } else {
-                JsBarcode(`#barcodeA2_${group}_${index}`, a2Barcode, {
-                    format: "CODE128",
-                    width: 2,
-                    height: 30
-                });
-            }
+        row.innerHTML = `
+            ${remarkCell}
+            <td>${teacher["恆星位置"]}</td>
+            <td>${teacher["學校"] || "測試學校"}</td>
+            <td>${teacher["教師姓名"]}</td>
+            <td><svg id="barcodeA1_${group}_${index}" class="barcode"></svg></td>
+            <td><svg id="barcodeA2_${group}_${index}" class="barcode"></svg></td>
+            <td><svg id="barcodeBH_${group}_${index}" class="barcode"></svg></td>
+        `;
+        tbody.appendChild(row);
 
-            if (bHackathonBarcode === "null") {
-                document.getElementById(`barcodeBH_${group}_${index}`).style.display = 'none';
-            } else {
-                JsBarcode(`#barcodeBH_${group}_${index}`, bHackathonBarcode, {
-                    format: "CODE128",
-                    width: 2,
-                    height: 30
-                });
-            }
-        });
-    }
+        if (a1Barcode === "null") {
+            document.getElementById(`barcodeA1_${group}_${index}`).style.display = 'none';
+        } else {
+            JsBarcode(`#barcodeA1_${group}_${index}`, a1Barcode, {
+                format: "CODE128",
+                width: 2,
+                height: 30
+            });
+        }
+
+        if (a2Barcode === "null") {
+            document.getElementById(`barcodeA2_${group}_${index}`).style.display = 'none';
+        } else {
+            JsBarcode(`#barcodeA2_${group}_${index}`, a2Barcode, {
+                format: "CODE128",
+                width: 2,
+                height: 30
+            });
+        }
+
+        if (bHackathonBarcode === "null") {
+            document.getElementById(`barcodeBH_${group}_${index}`).style.display = 'none';
+        } else {
+            JsBarcode(`#barcodeBH_${group}_${index}`, bHackathonBarcode, {
+                format: "CODE128",
+                width: 2,
+                height: 30
+            });
+        }
+    });
+}
+
+
+
 
     // 將資料填充到側邊導航欄
     function populateSideLinks(data, group) {
